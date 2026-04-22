@@ -1,305 +1,73 @@
-# 🛍️ HEXA Clothing – Full Stack E-Commerce Platform
+# React + Vite
 
-HEXA Clothing is a modern full-stack e-commerce web application designed to deliver a seamless online shopping experience. The system includes a responsive frontend built with React (Vite) and a scalable backend powered by Node.js, Express, and SQL.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🚀 Project Overview
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-This project aims to develop a fully functional e-commerce platform where:
+## React Compiler
 
-* Customers can browse products and categories
-* Users can register and log in securely
-* Customers can add items to cart and place orders
-* Orders and payments are processed efficiently
-* Admins can manage products, users, and orders
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
----
+## Expanding the ESLint configuration
 
-## 🧱 Tech Stack
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### Frontend
-* React.js 19.2 (Vite)
-* React Router v7
-* Axios (API calls)
-* Lucide React (Icons)
-* CSS / Tailwind (optional)
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### Backend
-* Node.js
-* Express.js
-* MySQL Database
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-### Tools
-* Git & GitHub (Version Control)
-* Postman (API Testing)
-* Figma (UI/UX Design)
-
----
-
-## 📁 Project Structure
-
-```bash
-hexa-clothing/
-├── client/
-│   ├── public/
-│   │   ├── icons/
-│   │   ├── images/
-│   │   └── robots.txt
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   │   ├── common/
-│   │   │   │   ├── Button.jsx
-│   │   │   │   ├── Input.jsx
-│   │   │   │   └── Loader.jsx
-│   │   │   ├── layout/
-│   │   │   │   ├── Navbar.jsx
-│   │   │   │   ├── Footer.jsx
-│   │   │   │   └── Sidebar.jsx
-│   │   │   └── ui/
-│   │   ├── context/
-│   │   │   ├── AuthContext.jsx
-│   │   │   └── CartContext.jsx
-│   │   ├── data/
-│   │   │   └── OrderMock.js
-│   │   ├── hooks/
-│   │   │   └── useAuth.js
-│   │   ├── pages/
-│   │   │   ├── About/
-│   │   │   ├── Cart/
-│   │   │   ├── Checkout/
-│   │   │   ├── Contact/
-│   │   │   ├── Home/
-│   │   │   ├── Login/
-│   │   │   ├── OrderSuccess/
-│   │   │   ├── OrderSummary/
-│   │   │   ├── Products/
-│   │   │   ├── Register/
-│   │   │   └── ShippingStep/
-│   │   ├── routes/
-│   │   │   └── AppRoutes.jsx
-│   │   ├── services/
-│   │   │   ├── api.js
-│   │   │   ├── authService.js
-│   │   │   ├── cartService.js
-│   │   │   ├── orderService.js
-│   │   │   ├── productService.js
-│   │   │   └── userService.js
-│   │   ├── styles/
-│   │   │   └── globals.css
-│   │   ├── utils/
-│   │   │   └── helpers.js
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   ├── index.css
-│   │   ├── main.jsx
-│   │   └── tailwind.config.js/
-│   ├── package.json
-│   ├── postcss.config.js
-│   ├── vite.config.js
-│   ├── eslint.config.js
-│   └── README.md
-├── server/
-│   ├── app.js
-│   ├── package.json
-│   ├── server.js
-│   ├── config/
-│   │   └── db.js
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── cartController.js
-│   │   ├── orderController.js
-│   │   ├── productController.js
-│   │   └── userController.js
-│   ├── middleware/
-│   │   ├── auth.js
-│   │   └── errorHandler.js
-│   ├── models/
-│   │   ├── orderModel.js
-│   │   ├── productModel.js
-│   │   └── userModel.js
-│   ├── routes/
-│   │   ├── auth.routes.js
-│   │   ├── cart.routes.js
-│   │   ├── order.routes.js
-│   │   ├── product.routes.js
-│   │   └── user.routes.js
-│   └── utils/
-│       ├── helpers.js
-│       └── validators.js
-├── database/
-│   ├── schema.sql
-│   └── seed.sql
-├── package.json
-├── .gitignore
-├── SETUP.md
-├── STRUCTURE.md
-├── API_DOCUMENTATION.md
-└── README.md
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 👥 Team & Responsibilities
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-### 🔹 Development Roles
-
-| Member     | Role                                     |
-| ---------- | ---------------------------------------- |
-| Shafrin    | Team Lead, Full Stack, Deployment, UI/UX |
-| Heli       | Database + Frontend + QA                 |
-| Thushalini | Frontend + QA                            |
-| Shavindi   | Backend Support + QA + Frontend          |
-| Piyula     | Frontend + QA                            |
-| Vithush    | Full Stack Development                   |
-| Sara       | Frontend + QA                            |
-
----
-
-### 🎨 Page Allocation (Frontend)
-
-| Member     | Pages                                       |
-| ---------- | ------------------------------------------- |
-| Heli       | Home, Products (Grid), About                |
-| Shafrin    | Products (Single/List), Cart, Order Summary |
-| Shavindi   | Create Account, Log In                      |
-| Thushalini | Contact, Profile                            |
-| Piyula     | Address, Shipping                           |
-| Vithush    | Payment, Review                             |
-| Sara       | Order Success, Order Summary 1              |
-
----
-
-## 🌿 Git Workflow
-
-We follow a **feature-based branching strategy**:
-
-1. Each member works on their own branch
-2. No direct commits to `main`
-3. Push changes to feature branch
-4. Create Pull Request
-5. Review and merge into `main`
-
-### Branch Naming Convention
-
-```bash
-feature/<api-name>
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-Example:
-
-```bash
-feature/auth-api
-feature/product-api
-```
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/shafrin0721/HEXA.git
-cd HEXA
-```
-
----
-
-### 2. Frontend Setup
-
-```bash
-cd client
-npm install
-npm run dev
-```
-
----
-
-### 3. Backend Setup
-
-```bash
-cd server
-npm install
-npm start
-```
-
----
-
-### 4. Database Setup
-
-* Import `schema.sql`
-* Run `seed.sql` (optional)
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file in the root or server folder:
-
-```env
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=hexa_db
-JWT_SECRET=yoursecretkey
-```
-
----
-
-## 📌 Key Features
-
-* User Authentication (JWT)
-* Product Management
-* Cart & Checkout System
-* Order Processing
-* RESTful APIs
-* Modular Architecture
-
----
-
-## 📸 UI/UX Design
-
-Figma Design:
-https://www.figma.com/design/huBctacPiwvl9GsP0J25gK/hexa-clothing
-
----
-
-## ✅ Best Practices Followed
-
-* Clean folder structure
-* Separation of concerns (MVC)
-* Reusable components
-* API modularization
-* Version control with Git
-
----
-
-## 📬 Contribution Guidelines
-
-* Pull latest `main` before starting
-* Work only in your assigned branch
-* Commit with clear messages
-* Test before submitting PR
-
----
-
-## 📄 License
-
-This project is developed for academic and learning purposes.
-
----
-
-## 💡 Future Enhancements
-
-* Payment gateway integration
-* Admin dashboard UI
-* Order tracking system
-* Email notifications
-* Deployment (Netlify + Render)
-
----
-
-✨ Built with teamwork, structure, and clean code.

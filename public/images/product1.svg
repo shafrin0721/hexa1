@@ -1,0 +1,8 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#f8f9fa"/>
+  <rect x="50" y="50" width="300" height="300" fill="#e9ecef" stroke="#dee2e6" stroke-width="2"/>
+  <text x="200" y="180" text-anchor="middle" fill="#495057" font-family="Arial" font-size="24" font-weight="bold">Veritas Strength</text>
+  <text x="200" y="220" text-anchor="middle" fill="#6c757d" font-family="Arial" font-size="16">Tee</text>
+  <circle cx="200" cy="280" r="40" fill="#007bff"/>
+  <text x="200" y="290" text-anchor="middle" fill="#fff" font-family="Arial" font-size="18" font-weight="bold">$19.99</text>
+</svg>
